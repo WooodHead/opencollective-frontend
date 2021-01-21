@@ -1623,6 +1623,7 @@
   "tax.vatShort": "VAT",
   "TaxForm": "Tax form",
   "TaxForm.DisabledPayment": "The payee must submit their tax form info before the expense can be paid.",
+  "Tier.AmountRaised": "{amount} of {goalWithInterval} raised",
   "tier.amountType.fixed": "定額",
   "tier.amountType.flexible": "柔軟な金額",
   "tier.amountType.label": "金額タイプ",

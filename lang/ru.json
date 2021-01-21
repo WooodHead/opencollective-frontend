@@ -1623,6 +1623,7 @@
   "tax.vatShort": "НДС",
   "TaxForm": "Tax form",
   "TaxForm.DisabledPayment": "Получатель должен представить информацию о налоговой форме, прежде чем расходы будут оплачены.",
+  "Tier.AmountRaised": "{amount} of {goalWithInterval} raised",
   "tier.amountType.fixed": "фиксированная сумма",
   "tier.amountType.flexible": "гибкая сумма",
   "tier.amountType.label": "Тип суммы",

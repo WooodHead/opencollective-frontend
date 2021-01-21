@@ -12,10 +12,9 @@ import { capitalize } from '../../lib/utils';
 
 import CollapsableText from '../CollapsableText';
 import FormattedMoneyAmount from '../FormattedMoneyAmount';
-import { Box, Flex } from '../Grid';
+import { Flex } from '../Grid';
 import Link from '../Link';
 import StyledLink from '../StyledLink';
-import StyledProgressBar from '../StyledProgressBar';
 import { P } from '../Text';
 
 import Contribute from './Contribute';
@@ -92,52 +91,14 @@ const ContributeTier = ({ intl, collective, tier, ...props }) => {
       stats={tier.stats.contributors}
       data-cy="contribute-card-tier"
       disableCTA={isDisabled}
+      goal={tier.goal}
+      amountRaised={raised}
+      currency={currency}
+      interval={tier.interval}
       {...props}
     >
       <Flex flexDirection="column" justifyContent="space-between" height="100%">
         <div>
-          {tier.goal && (
-            <Box mb={3}>
-              <P fontSize="14px" color="black.600" mb={2}>
-                <FormattedMessage
-                  id="TierPage.AmountGoal"
-                  defaultMessage="{amountWithInterval} goal"
-                  values={{
-                    amountWithInterval: (
-                      <FormattedMoneyAmount
-                        amount={tier.goal}
-                        interval={tier.interval}
-                        currency={currency}
-                        amountStyles={{ fontWeight: 'bold', fontSize: '20px', color: 'black.900' }}
-                        precision={getPrecisionFromAmount(tier.goal)}
-                      />
-                    ),
-                  }}
-                />
-              </P>
-              <P fontSize="12px" color="black.500">
-                <FormattedMessage
-                  id="TierPage.AmountRaised"
-                  defaultMessage="{amountWithInterval} raised"
-                  values={{
-                    amountWithInterval: (
-                      <FormattedMoneyAmount
-                        amountStyles={{ fontWeight: 'bold' }}
-                        amount={raised}
-                        currency={currency}
-                        interval={tier.interval}
-                        precision={getPrecisionFromAmount(raised)}
-                      />
-                    ),
-                  }}
-                />
-                {tier.goal && ` (${Math.round((raised / tier.goal) * 100)}%)`}
-              </P>
-              <Box mt={1}>
-                <StyledProgressBar percentage={raised / tier.goal} />
-              </Box>
-            </Box>
-          )}
           {tier.maxQuantity > 0 && (
             <P fontSize="1.1rem" color="#e69900" textTransform="uppercase" fontWeight="500" letterSpacing="1px" mb={2}>
               <FormattedMessage

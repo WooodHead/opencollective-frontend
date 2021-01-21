@@ -4,12 +4,15 @@ import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import styled, { css } from 'styled-components';
 
 import { ContributionTypes } from '../../lib/constants/contribution-types';
+import { getPrecisionFromAmount } from '../../lib/currency-utils';
 
 import { ContributorAvatar } from '../Avatar';
 import Container from '../Container';
+import FormattedMoneyAmount from '../FormattedMoneyAmount';
 import { Box, Flex } from '../Grid';
 import Link from '../Link';
 import StyledButton from '../StyledButton';
+import StyledProgressBar from '../StyledProgressBar';
 import StyledTag from '../StyledTag';
 import { P } from '../Text';
 
@@ -155,10 +158,13 @@ const ContributeCard = ({
   hideContributors,
   image,
   disableCTA,
+  goal,
+  amountRaised,
+  interval,
+  currency,
   ...props
 }) => {
   const totalContributors = (stats && stats.all) || (contributors && contributors.length) || 0;
-
   return (
     <StyledContributeCard {...props}>
       <CoverImage image={image} isDisabled={disableCTA}>
@@ -189,6 +195,38 @@ const ContributeCard = ({
                 {buttonText || getContributeCTA(type)}
               </StyledButton>
             </Link>
+          )}
+          {goal && (
+            <Box mb={3} mt={3}>
+              <P fontSize="12px" color="black.500">
+                <FormattedMessage
+                  id="Tier.AmountRaised"
+                  defaultMessage="{amount} of {goalWithInterval} raised"
+                  values={{
+                    amount: (
+                      <FormattedMoneyAmount
+                        amountStyles={{ fontWeight: 'bold', color: 'black.700' }}
+                        amount={amountRaised}
+                        precision={getPrecisionFromAmount(amountRaised)}
+                      />
+                    ),
+                    goalWithInterval: (
+                      <FormattedMoneyAmount
+                        amountStyles={{ fontWeight: 'bold', color: 'black.700' }}
+                        amount={goal}
+                        currency={currency}
+                        interval={interval}
+                        precision={getPrecisionFromAmount(goal)}
+                      />
+                    ),
+                  }}
+                />
+                {goal && ` (${Math.round((amountRaised / goal) * 100)}%)`}
+              </P>
+              <Box mt={1}>
+                <StyledProgressBar percentage={amountRaised / goal} />
+              </Box>
+            </Box>
           )}
           {!hideContributors && (
             <Box mt={2} height={60}>
@@ -286,6 +324,14 @@ ContributeCard.propTypes = {
     users: PropTypes.number,
     organizations: PropTypes.number,
   }),
+  /** currency of tier */
+  currency: PropTypes.string,
+  /** Interval of tier */
+  interval: PropTypes.string,
+  /** Goal amount of tier */
+  goal: PropTypes.number,
+  /** Amount raised by tier */
+  amountRaised: PropTypes.number,
   /** If true, contributors will not be displayed */
   hideContributors: PropTypes.bool,
   /** @ignore from injectIntl */

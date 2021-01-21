@@ -1623,6 +1623,7 @@
   "tax.vatShort": "DPH",
   "TaxForm": "Tax form",
   "TaxForm.DisabledPayment": "The payee must submit their tax form info before the expense can be paid.",
+  "Tier.AmountRaised": "{amount} of {goalWithInterval} raised",
   "tier.amountType.fixed": "fixed amount",
   "tier.amountType.flexible": "flexible amount",
   "tier.amountType.label": "Amount type",

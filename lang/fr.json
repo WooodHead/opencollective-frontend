@@ -1623,6 +1623,7 @@
   "tax.vatShort": "TVA",
   "TaxForm": "Formulaire de taxe",
   "TaxForm.DisabledPayment": "Le bénéficiaire doit soumettre son formulaire de déclaration de revenus avant que la dépense puisse être payée.",
+  "Tier.AmountRaised": "{amount} of {goalWithInterval} raised",
   "tier.amountType.fixed": "montant fixe",
   "tier.amountType.flexible": "montant flexible",
   "tier.amountType.label": "Type de montant",
